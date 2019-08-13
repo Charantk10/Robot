@@ -11,7 +11,7 @@ public class InValidCommandCharactersException extends BusinessException {
 	private static final long serialVersionUID = 1L;
 
 	public InValidCommandCharactersException(List<Character> list) {
-		super("Invalid Command, based upon the selected language the command should contain values only from "
+		super("Invalid Command! Please make sure the command entered is inline with the selected language using any of these "
 				+ list);
 	}
 

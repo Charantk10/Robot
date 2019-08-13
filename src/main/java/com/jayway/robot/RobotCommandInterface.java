@@ -37,7 +37,7 @@ public class RobotCommandInterface {
 			executeCommand(request);
 			
 		} catch (BusinessException e) {
-			System.out.println("Prrocess Terminated with the Error :"+ e.getMessage());
+			System.out.println("Process terminated with the Error :"+ e.getMessage());
 			System.exit(0);
 		}
 	}

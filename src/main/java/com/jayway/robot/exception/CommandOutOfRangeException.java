@@ -8,7 +8,7 @@ public class CommandOutOfRangeException extends BusinessException {
 	private static final long serialVersionUID = 1L;
 	
 	public CommandOutOfRangeException() {
-		super("The Command provided are moving out of the room");
+		super("The provided command moves the Robot out of the room. Please execute the program again with a valid command");
 	}
 
 	public CommandOutOfRangeException(Exception e) {

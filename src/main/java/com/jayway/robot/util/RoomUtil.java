@@ -40,7 +40,7 @@ public class RoomUtil {
 		Integer xCoordinate = position.x;
 		Integer yCoordinate = position.y;
 		
-		if ((xCoordinate > side || xCoordinate < 0 ) && (yCoordinate > side || yCoordinate < 0)) {
+		if (xCoordinate > side || xCoordinate < 0 || yCoordinate > side || yCoordinate < 0) {
 			return false;
 		}
 		
