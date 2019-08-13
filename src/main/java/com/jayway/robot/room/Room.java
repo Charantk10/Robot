@@ -5,7 +5,6 @@ import com.jayway.robot.type.CommandType;
 import com.jayway.robot.type.DirectionType;
 
 public interface Room {
-
 	public static final DirectionType DEFAULT_DIRECTION = DirectionType.NORTH;
 
 	java.awt.Point getStartPosition();
@@ -15,4 +14,6 @@ public interface Room {
 	boolean executeCommand(CommandType command) throws BusinessException;
 
 	public String getCurrentPositionWithDirection();
+
+	void moveForward() throws BusinessException;
 }

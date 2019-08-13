@@ -8,38 +8,53 @@ import com.jayway.robot.type.DirectionType;
 import com.jayway.robot.type.RoomType;
 import com.jayway.robot.util.RoomUtil;
 
-public class SquareRoom implements Room {
-	private Point currentPointPosition;
-	private Point startPointPosition;
-	private DirectionType currentDirection;
-	private Integer side;
+public class SquareRoom extends  AbstractRoom {
 	
 	public SquareRoom (Point startPointPosition, Integer side) {
-		this.startPointPosition = startPointPosition;
-		this.currentPointPosition = startPointPosition;		
-		this.side = side;
-		this.currentDirection = DEFAULT_DIRECTION;
+		super(startPointPosition, side);
 	}
 	
 	@Override
-	public Point getStartPosition() {		
-		return startPointPosition;
-	}
-
-	@Override
 	public boolean contains(Point position) {
-		return RoomUtil.validatePointInRoom(RoomType.SQUARE, position, side);
+		return RoomUtil.validatePointInRoom(RoomType.SQUARE, position, measure);
 	}
 
 	@Override
 	public boolean executeCommand(CommandType command) throws BusinessException {
-		// TODO Auto-generated method stub
-		return false;
+		switch (command) {
+		case RIGHT:
+			currentDirection = DirectionType.getRightDirection(currentDirection);
+			break;
+		case LEFT:
+			currentDirection = DirectionType.getLeftDirection(currentDirection);
+			break;
+		case FORWARD:
+			moveForward();
+			break;
+		}
+		
+		return true;
 	}
-
-	@Override
-	public String getCurrentPositionWithDirection() {
-		return currentPointPosition.x + " " + currentPointPosition.y + " " + currentDirection.getCode() ;
+	
+	public void moveForward() throws BusinessException {
+		switch (currentDirection) {
+		case EAST:
+			-- currentPointPosition.x;
+			break;
+		case WEST:
+			++ currentPointPosition.x;
+			break;
+		case SOUTH:
+			++ currentPointPosition.y;
+			break;
+		case NORTH:
+			-- currentPointPosition.y;	
+			break;
+		}
+		
+		if (!contains(currentPointPosition)) {
+			throw new BusinessException("The Command provided are moving out of the room");
+		}
 	}
 
 }
