@@ -3,6 +3,7 @@ package com.jayway.robot.room;
 import java.awt.Point;
 
 import com.jayway.robot.exception.BusinessException;
+import com.jayway.robot.exception.CommandOutOfRangeException;
 import com.jayway.robot.type.RoomType;
 import com.jayway.robot.util.RoomUtil;
 
@@ -36,7 +37,7 @@ public class CircularRoom extends AbstractRoom {
 		}
 
 		if (!contains(currentPointPosition)) {
-			throw new BusinessException("The Command provided are moving out of the room");
+			throw new CommandOutOfRangeException();
 		}
 	}
 
