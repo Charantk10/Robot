@@ -1,5 +1,8 @@
 package com.jayway.robot.exception;
 
+/**
+ * A GenericException class for the Robot application
+ */
 public class BusinessException extends Exception {
 	private static final long serialVersionUID = 3670096129928791764L;
 

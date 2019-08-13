@@ -1,5 +1,8 @@
 package com.jayway.robot.exception;
 
+/**
+ * An Exception class for handling the invalid Integer value
+ */
 public class InvalidInputIntException extends BusinessException {
 
 	private static final long serialVersionUID = 1L;

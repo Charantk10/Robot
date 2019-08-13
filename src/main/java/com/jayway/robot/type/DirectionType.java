@@ -1,5 +1,8 @@
 package com.jayway.robot.type;
 
+/**
+ * An enum containing Directions 
+ */
 public enum DirectionType {
 	EAST ("Ö"), WEST ("W"), NORTH ("N"), SOUTH ("S");
 	

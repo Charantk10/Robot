@@ -6,6 +6,9 @@ import com.jayway.robot.exception.BusinessException;
 import com.jayway.robot.type.RoomType;
 import com.jayway.robot.util.RoomUtil;
 
+/**
+ * Circular Implementation of the Room
+ */
 public class CircularRoom extends AbstractRoom {
 
 	public CircularRoom(Point startPointPosition, Integer radius) {

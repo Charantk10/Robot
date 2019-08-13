@@ -3,14 +3,19 @@ package com.jayway.robot.util;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.jayway.robot.exception.BusinessException;
 import com.jayway.robot.exception.InvalidInputIntException;
-import com.jayway.robot.type.CommandType;
 import com.jayway.robot.type.LanguageType;
 import com.jayway.robot.type.RoomType;
-
+/**
+ * An Utility Class for handling the Command Line Inputs from the user
+ */
 public class CommandLineUtil {
 
+	/**
+	 * Prompts the user with the Languages returns the selected Language
+	 * @param java.util.Scanner
+	 * @return LanguageType
+	 */
 	public static LanguageType selectLanguage(Scanner sn) {
 		// Print the options for the user to choose from
 		LanguageType language = null;
@@ -45,6 +50,11 @@ public class CommandLineUtil {
 		return language;
 	}
 
+	/**
+	 * Prompts the user with the Room Types returns the selected RoomType
+	 * @param java.util.Scanner
+	 * @return RoomType
+	 */
 	public static RoomType selectRoomType(Scanner sn) {
 		// Print the options for the user to choose from
 		RoomType roomType = null;
@@ -79,6 +89,12 @@ public class CommandLineUtil {
 		return roomType;
 	}
 
+	/**
+	 * Prompts the user with an option to enter the measure(side or radius) depending upon the RoomType
+	 * @param java.util.Scanner
+	 * @param RoomType
+	 * @return Integer
+	 */
 	public static Integer selectMeasureByRoomType(Scanner sn, RoomType roomType) throws InvalidInputIntException {
 		if (roomType == RoomType.CIRCULAR) {
 			System.out.println("Please Enter the radius of the room");
@@ -88,16 +104,31 @@ public class CommandLineUtil {
 		return acceptIntInput(sn);
 	}
 
+	/**
+	 * Prompts the user with an option to enter the starting point xcoordinate of the room 
+	 * @param java.util.Scanner
+	 * @return Integer
+	 */
 	public static Integer selectXCoordinate(Scanner sn) throws InvalidInputIntException {
 		System.out.println("Please Enter a starting x coordinate");
 		return acceptIntInput(sn);
 	}
 
+	/**
+	 * Prompts the user with an option to enter the starting point ycoordinate of the room 
+	 * @param java.util.Scanner
+	 * @return Integer
+	 */
 	public static Integer selectYCoordinate(Scanner sn) throws InvalidInputIntException {
 		System.out.println("Please Enter a starting y coordinate");
 		return acceptIntInput(sn);
 	}
 
+	/**
+	 * Prompts the user to enter input as an Integer 
+	 * @param java.util.Scanner
+	 * @return Integer
+	 */
 	private static Integer acceptIntInput(Scanner sn) throws InvalidInputIntException {
 		try {
 			return sn.nextInt();
@@ -106,25 +137,13 @@ public class CommandLineUtil {
 		}
 	}
 
+	/**
+	 * Prompts the user to enter Commands as a sequence of characters 
+	 * @param java.util.Scanner
+	 * @return String
+	 */
 	public static String selectCommandsSequence(Scanner sn) {
 		System.out.println("Please Enter a command sequence");
 		return sn.next();
-	}
-
-	public static CommandType validateAndGetCommand(char command, LanguageType languageType) throws BusinessException {
-		CommandType commandType;
-		if (languageType == LanguageType.ENGLISH) {
-			commandType = CommandType.getByEnglishCode(command);
-		} else {
-			commandType = CommandType.getBySvenskaCode(command);
-		}
-
-		if (commandType == null) {
-			throw new BusinessException(
-					"Invalid Command, based upon the selected language the command should contain values only from "
-							+ CommandType.getCommandCodesByLanguage(languageType));
-		}
-
-		return commandType;
-	}
+	}	
 }

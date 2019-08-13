@@ -3,6 +3,12 @@ package com.jayway.robot.type;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jayway.robot.exception.BusinessException;
+import com.jayway.robot.exception.InValidCommandCharactersException;
+
+/**
+ * An enum for containing the Commands in svenska and english languages
+ */
 public enum CommandType {
 	LEFT('L', 'V'), RIGHT('R', 'H'), FORWARD('F', 'G');
 
@@ -14,17 +20,17 @@ public enum CommandType {
 		this.swedishCode = swedishCode;
 	}
 
-	public char getEnglishCode() {
+	public Character getEnglishCode() {
 		return englishCode;
 	}
 
-	public char getSwedishCode() {
+	public Character getSwedishCode() {
 		return swedishCode;
 	}
 
-	public static CommandType getByEnglishCode(char englishCode) {
+	public static CommandType getByEnglishCode(Character englishCode) {
 		for (CommandType command : CommandType.values()) {
-			if (command.getEnglishCode() == englishCode) {
+			if (command.getEnglishCode().toString().equalsIgnoreCase(englishCode.toString())) {
 				return command;
 			}
 		}
@@ -32,9 +38,9 @@ public enum CommandType {
 		return null;
 	}
 
-	public static CommandType getBySvenskaCode(char svenskaCode) {
+	public static CommandType getBySvenskaCode(Character svenskaCode) {
 		for (CommandType command : CommandType.values()) {
-			if (command.getSwedishCode() == svenskaCode) {
+			if (command.getSwedishCode().toString().equalsIgnoreCase(svenskaCode.toString())) {
 				return command;
 			}
 		}
@@ -46,10 +52,9 @@ public enum CommandType {
 		List<Character> commandCodes = new ArrayList<>();
 
 		for (CommandType command : CommandType.values()) {
-
 			commandCodes.add(languageType == LanguageType.ENGLISH ? command.englishCode : command.swedishCode);
 		}
-		
+
 		return commandCodes;
 
 	}
@@ -61,5 +66,20 @@ public enum CommandType {
 			englishCodes.add(command.englishCode);
 		}
 		return englishCodes;
+	}
+
+	public static CommandType validateAndGetCommand(char command, LanguageType languageType) throws BusinessException {
+		CommandType commandType;
+		if (languageType == LanguageType.ENGLISH) {
+			commandType = CommandType.getByEnglishCode(command);
+		} else {
+			commandType = CommandType.getBySvenskaCode(command);
+		}
+
+		if (commandType == null) {
+			throw new InValidCommandCharactersException(CommandType.getCommandCodesByLanguage(languageType));
+		}
+
+		return commandType;
 	}
 }

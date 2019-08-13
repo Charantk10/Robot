@@ -5,6 +5,9 @@ import java.awt.Point;
 import com.jayway.robot.type.LanguageType;
 import com.jayway.robot.type.RoomType;
 
+/**
+ * A builder class for building the CommandRequest
+ */
 public class CommandRequestBuilder {
 	private String command;
 	private LanguageType language;

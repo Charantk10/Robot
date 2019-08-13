@@ -6,6 +6,10 @@ import com.jayway.robot.exception.BusinessException;
 import com.jayway.robot.type.CommandType;
 import com.jayway.robot.type.DirectionType;
 
+/**
+ * An abstract class Implementing the room interface and providing
+ * implementation for few common methods
+ */
 public abstract class AbstractRoom implements Room {
 	protected Point currentPointPosition;
 	protected Point startPointPosition;
@@ -18,21 +22,21 @@ public abstract class AbstractRoom implements Room {
 		this.measure = measure;
 		this.currentDirection = DEFAULT_DIRECTION;
 	}
-	
+
 	public Point getStartPosition() {
 		return startPointPosition;
-	}	
+	}
 
 	public String getCurrentPositionWithDirection() {
-		return currentPointPosition.x + " " + currentPointPosition.y + " " + currentDirection.getCode() ;
+		return currentPointPosition.x + " " + currentPointPosition.y + " " + currentDirection.getCode();
 	}
 
 	public Point getCurrentPosition() {
 		return currentPointPosition;
 	}
-	
+
 	@Override
-	public boolean executeCommand(CommandType command) throws BusinessException {
+	public void executeCommand(CommandType command) throws BusinessException {
 		switch (command) {
 		case RIGHT:
 			currentDirection = DirectionType.getRightDirection(currentDirection);
@@ -44,8 +48,6 @@ public abstract class AbstractRoom implements Room {
 			moveForward();
 			break;
 		}
-		
-		return true;
-	}	
+	}
 
 }
