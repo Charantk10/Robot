@@ -6,6 +6,7 @@ import com.jayway.robot.exception.BusinessException;
 import com.jayway.robot.type.CommandType;
 import com.jayway.robot.type.DirectionType;
 import com.jayway.robot.type.RoomType;
+import com.jayway.robot.util.RoomUtil;
 
 public class SquareRoom implements Room {
 	private Point currentPointPosition;
