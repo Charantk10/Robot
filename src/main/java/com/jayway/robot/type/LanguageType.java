@@ -6,11 +6,11 @@ package com.jayway.robot.type;
 public enum LanguageType {
 	SVENSKA("SVENSKA"), ENGLISH("ENGLISH");
 
+	private String code;
+
 	private LanguageType(String code) {
 		this.code = code;
 	}
-
-	private String code;
 
 	public String getCode() {
 		return code;

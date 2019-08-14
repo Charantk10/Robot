@@ -14,6 +14,11 @@ import com.jayway.robot.type.RoomType;
  */
 public class CommandLineUtil {
 
+	private static final String ONE = "1";
+	private static final String TWO = "2";
+	private static final String THREE = "3";
+	private static final String PERIOD = ". ";
+	private static final String EXIT = "Exit";
 	/**
 	 * Prompts the user with the Languages returns the selected Language
 	 * 
@@ -25,9 +30,9 @@ public class CommandLineUtil {
 		LanguageType language = null;
 		System.out.println("Welcome to Robot Programming!");
 		System.out.println("Please select the language to provide your Commands");
-		System.out.println("1." + LanguageType.ENGLISH.getCode());
-		System.out.println("2." + LanguageType.SVENSKA.getCode());
-		System.out.println("3.Exit");
+		System.out.println(ONE + PERIOD + LanguageType.ENGLISH.getCode());
+		System.out.println(TWO+ PERIOD + LanguageType.SVENSKA.getCode());
+		System.out.println(THREE + PERIOD + EXIT);
 		// Prompt the user to make a choice
 		System.out.println("Enter your choice:");
 
@@ -36,15 +41,15 @@ public class CommandLineUtil {
 			String userInput = sn.next();
 			userInput = userInput.trim();
 			switch (userInput) {
-			case "1":
+			case ONE:
 				language = LanguageType.ENGLISH;
 				inValidInput = Boolean.FALSE;
 				break;
-			case "2":
+			case TWO:
 				language = LanguageType.SVENSKA;
 				inValidInput = Boolean.FALSE;
 				break;
-			case "3":
+			case THREE:
 				// exit from the program
 				System.out.println("Exiting...");
 				System.exit(0);
@@ -65,9 +70,9 @@ public class CommandLineUtil {
 		// Print the options for the user to choose from
 		RoomType roomType = null;
 		System.out.println("Please select the type of the Room");
-		System.out.println("1." + RoomType.CIRCULAR);
-		System.out.println("2." + RoomType.SQUARE);
-		System.out.println("3.Exit");
+		System.out.println(ONE + PERIOD + RoomType.CIRCULAR);
+		System.out.println(TWO + PERIOD + RoomType.SQUARE);
+		System.out.println(THREE + PERIOD + EXIT);
 		// Prompt the user to make a choice
 		System.out.println("Enter your choice:");
 
@@ -76,15 +81,15 @@ public class CommandLineUtil {
 			String userInput = sn.next();
 			userInput = userInput.trim();
 			switch (userInput) {
-			case "1":
+			case ONE:
 				roomType = RoomType.CIRCULAR;
 				inValidInput = Boolean.FALSE;
 				break;
-			case "2":
+			case TWO:
 				roomType = RoomType.SQUARE;
 				inValidInput = Boolean.FALSE;
 				break;
-			case "3":
+			case THREE:
 				// exit from the program
 				System.out.println("Exiting...");
 				System.exit(0);
